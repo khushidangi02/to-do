@@ -10,7 +10,7 @@ const App = () => {
   // Fetch tasks from backend
   const fetchTasks = async () => {
     try {
-      const response = await axios.get("/api/tasks");
+      const response = await axios.get("http://13.53.175.90:5000/tasks");
       setTasks(response.data);
     } catch (err) {
       console.error("Error fetching tasks:", err);
@@ -21,7 +21,7 @@ const App = () => {
   const addTask = async () => {
     if (newTask && category) {
       try {
-        const response = await axios.post("/api/tasks", {
+        const response = await axios.post("http://13.53.175.90:5000/tasks", {
           task: newTask,
           category,
         });
@@ -37,7 +37,7 @@ const App = () => {
   // Toggle task completion
   const toggleComplete = async (id, completed) => {
     try {
-      const response = await axios.put(`/api/tasks/${id}`, {
+      const response = await axios.put(`http://13.53.175.90:5000/tasks/${id}`, {
         completed: !completed,
       });
       setTasks(
@@ -53,7 +53,7 @@ const App = () => {
   // Delete task
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`/api/tasks/${id}`);
+      await axios.delete(`http://13.53.175.90:5000/tasks/${id}`);
       setTasks(tasks.filter((task) => task.id !== id)); // Remove deleted task
     } catch (err) {
       console.error("Error deleting task:", err);
